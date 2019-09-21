@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
-using System.Windows;
-using System.Windows.Documents;
+﻿using System.Windows;
 using Service;
 
 namespace View
@@ -11,7 +8,7 @@ namespace View
     /// </summary>
     public partial class MainWindow
     {
-        private readonly GeneratorService _service;
+        private readonly IService _service;
         
         public MainWindow()
         {

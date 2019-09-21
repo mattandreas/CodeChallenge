@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
 namespace Model
 {
-    public class Generator
+    public class Generator : IGenerator
     {
         private readonly List<string> _words = new List<string>();
 
@@ -27,12 +28,12 @@ namespace Model
             }
         }
 
-        public List<string> CheckInput(string input)
+        public IList CheckInput(string input)
         {
             return _words.Where(word => CheckWord(input, word)).ToList();
         }
 
-        private bool CheckWord(string input, string wordToCheck)
+        private static bool CheckWord(string input, string wordToCheck)
         {
             var sequence = input.ToCharArray().ToList();
             foreach (var character in wordToCheck)

@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:View"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
@@ -20,9 +19,10 @@
         
         <TextBox Name="EnteredText" Grid.Column="1" Grid.Row="0" MinWidth="100" />
         
-        <Button Name="Generate" Grid.Column="1" Grid.Row="1" Content="Generate" Click="Generate_OnClick" />
+        <Button Grid.Column="1" Grid.Row="1" Content="Generate" Click="Generate_OnClick" />
 
-        <ListView Grid.Row="2" Grid.Column="1" x:Name="WordList" ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="250">
+        <ListView Grid.Row="2" Grid.Column="1" x:Name="WordList" 
+                  ScrollViewer.VerticalScrollBarVisibility="Auto" MaxHeight="250">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>

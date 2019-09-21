@@ -38,14 +38,9 @@ namespace Model
             var sequence = input.ToCharArray().ToList();
             foreach (var character in wordToCheck)
             {
-                if (sequence.Contains(character))
-                {
-                    sequence.Remove(character);
-                }
-                else
-                {
+                if (!sequence.Contains(character))
                     return false;
-                }
+                sequence.Remove(character);
             }
             return true;
         }

@@ -13,6 +13,7 @@ namespace Service
         public GeneratorService()
         {
             _gen = new Generator();
+            //_gen = new FastGenerator();
         }
 
         public void CheckWord(string input)

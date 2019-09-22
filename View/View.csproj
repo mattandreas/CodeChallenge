@@ -91,4 +91,7 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>copy $(SolutionDir)\$(Configuration)\FastGenerator.dll $(TargetDir)</PreBuildEvent>
+  </PropertyGroup>
 </Project>

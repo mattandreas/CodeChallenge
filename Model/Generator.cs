@@ -31,7 +31,6 @@ namespace Model
 
         public IList CheckInput(string input)
         {
-            Debug.Write("Slow");
             return _words.Where(word => CheckWord(input, word)).ToList();
         }
 

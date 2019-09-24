@@ -1,27 +1,17 @@
 ﻿#pragma once
 
-#include <string>
+#include <list>
 using namespace std;
 
 class generator
 {
-	string input_;
 	char** words_ = nullptr;
 	int size_;
 public:
 	generator(char** str_array, int size);
-	virtual ~generator();
-	char** check_input(const string& input) const;
+	list<char*> check_input(const char* input) const;
 private:
-	static bool check_word(const string& input, const string& word_to_check);
-};
-
-struct node
-{
-	char* data;
-	node * previous = nullptr;
-    node * next = nullptr;
-	explicit node(char* data);
+	static bool check_word(const char* input, const char* word_to_check);
 };
 
 extern "C" {
@@ -32,11 +22,20 @@ extern "C" {
 }
 
 extern "C" {
-	__declspec(dllexport) inline char** CallCheckInput(generator* p_object, const string& input)
+	__declspec(dllexport) inline char** CallCheckInput(generator* p_object, const char* input, int* count)
 	{
 		if(p_object != nullptr)
 		{
-			return p_object->check_input(input);
+			auto word_list = p_object->check_input(input);
+
+			*count = word_list.size();
+
+			const auto word_arr = new char*[*count];
+
+			copy(word_list.begin(), word_list.end(), word_arr);
+
+			return word_arr;
+			
 		}
 		return nullptr;
 	}

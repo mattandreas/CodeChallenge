@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using Service;
 
 namespace View
@@ -24,7 +25,13 @@ namespace View
         private void Generate_OnClick(object sender, RoutedEventArgs e)
         {
             var input = EnteredText.Text.ToUpper();
-            _service.CheckWord((string) input);
+            _service.CheckWord(input);
+        }
+
+        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var input = SpeedSelector.SelectedIndex;
+            _service.SwitchGen(input);
         }
     }
 }

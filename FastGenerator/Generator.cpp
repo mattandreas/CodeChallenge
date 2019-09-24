@@ -8,60 +8,35 @@ generator::generator(char** str_array, const int size)
 	words_ = str_array;
 }
 
-generator::~generator()
+list<char*> generator::check_input(const char* input) const
 {
-	delete words_;
-	delete this;
-}
-
-char** generator::check_input(const string& input) const
-{
-	node* return_words = nullptr;
-	auto node_length = 0;
+	list<char*> word_list;
 	for (auto i = 0; i < size_; i++)
 	{
-		if (check_word(input, words_[i]))
+		auto word = words_[i];
+		
+		if (check_word(input, word))
 		{
-			return_words = new node(words_[i]);
-			return_words = return_words->next;
-			node_length++;
+			word_list.push_back(word);
 		}
 	}
-	const auto words = new char*[node_length];
-	auto current_index = 0;
-	while (return_words != nullptr)
-	{
-		words[current_index] = return_words->data;
-		return_words = return_words->previous;
-		delete return_words->next;
-		current_index++;
-	}
-	return words;
+	return word_list;
 }
 
-bool generator::check_word(const string& input, const string& word_to_check)
+bool generator::check_word(const char* input, const char* word_to_check)
 {
-	auto *sequence = const_cast<char*>(input.c_str());
-
-	const int sequence_len = input.length();
-
-	const int word_to_check_len = word_to_check.length();
+	list<char> sequence;
+	for (auto i = 0; input[i] != 0; i++)
+		sequence.push_back(input[i]);
 	
-	for (auto i = 0; i < word_to_check_len; i++)
+	for (auto i = 0; word_to_check[i] != 0; i++)
 	{
-		for (auto j = 0; j < sequence_len; j++)
-		{
-			if (sequence[j] != word_to_check[i])
-			{
-				return false;
-			}
-			sequence[j] = 0;
-		}
+		auto element = find(sequence.begin(), sequence.end(), word_to_check[i]);
+		
+		if (element == sequence.end())
+			return false;
+
+		sequence.erase(element);
 	}
 	return true;
-}
-
-node::node(char* data)
-{
-	this->data = data;
 }

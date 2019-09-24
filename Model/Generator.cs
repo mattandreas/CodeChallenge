@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 
@@ -30,6 +31,7 @@ namespace Model
 
         public IList CheckInput(string input)
         {
+            Debug.Write("Slow");
             return _words.Where(word => CheckWord(input, word)).ToList();
         }
 

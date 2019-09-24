@@ -31,6 +31,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <StackPanel Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center">
+            <ComboBox x:Name="SpeedSelector" SelectedIndex="0" SelectionChanged="Selector_OnSelectionChanged">
+                <ComboBoxItem>Fast</ComboBoxItem>
+                <ComboBoxItem>Slow</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
         
     </Grid>
 </Window>
